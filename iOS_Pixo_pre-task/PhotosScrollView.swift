@@ -50,9 +50,15 @@ struct PhotosScrollView: View {
 
     @ViewBuilder
     func StretchableView(_ color: Color) -> some View {
-        GeometryReader { _ in
+        GeometryReader {
+            let minY = $0.frame(in: .scrollView(axis: .vertical)).minY
+            let size = $0.size
+
+
             Rectangle()
                 .fill(color)
+                .frame(width: size.width, height: size.height + (minY > 0 ? minY : 0))
+                .offset(y: (minY > 0 ? -minY : 0 ))
         }
         .frame(width: size.width)
     }

@@ -14,7 +14,11 @@ struct Home: View {
     var body: some View {
         ScrollView(.vertical) {
             VStack(spacing: 10) {
+                //상단 캐러셀
                 PhotosScrollView(size: size, safeArea: safeArea)
+
+                //하단 섹션
+                OtherContens()
             }
         }
     }
