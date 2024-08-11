@@ -10,6 +10,7 @@ struct Home: View {
 
     var size: CGSize
     var safeArea: EdgeInsets
+    var sharedData = SharedData()
 
     var body: some View {
         ScrollView(.vertical) {
@@ -21,6 +22,8 @@ struct Home: View {
                 OtherContens()
             }
         }
+        .scrollDisabled(sharedData.isExpanded)
+        .environment(sharedData)
     }
 }
 

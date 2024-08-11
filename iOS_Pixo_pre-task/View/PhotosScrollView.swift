@@ -10,28 +10,44 @@ struct PhotosScrollView: View {
 
     var size: CGSize
     var safeArea: EdgeInsets
+    @Environment(SharedData.self) private var sharedData
 
     var body: some View {
         let screenHeight = size.height + safeArea.top + safeArea.bottom
         let minimisedHeight = screenHeight * 0.4
 
         ScrollView(.horizontal) {
-            LazyHStack(spacing: 0) {
+            LazyHStack(alignment: .bottom, spacing: 0) {
                 GridPhotosScrollView()
                     .frame(width: size.width)
+                    .id(1)
 
                 Group {
                     StretchableView(.blue)
+                        .id(2)
                     StretchableView(.yellow)
+                        .id(3)
                     StretchableView(.purple)
+                        .id(4)
                 }
                 .frame(height: screenHeight - minimisedHeight)
             }
+            .scrollTargetLayout()
         }
         .scrollIndicators(.hidden)
         .scrollTargetBehavior(.paging)
+        .safeAreaPadding(.bottom, 15)
+        .scrollPosition(id: .init(get: {
+            return sharedData.activePage
+        }, set: {
+            if let newValue = $0 { sharedData.activePage = newValue }
+        }))
+        .scrollDisabled(sharedData.isExpanded)
         .frame(height: screenHeight)
         .frame(height: screenHeight - minimisedHeight, alignment: .bottom)
+        .overlay(alignment: .bottom) {
+            CustomPagingIndicatorView()
+        }
     }
 
     @ViewBuilder
@@ -46,6 +62,7 @@ struct PhotosScrollView: View {
             }
         }
         .defaultScrollAnchor(.bottom)
+        .scrollDisabled(!sharedData.isExpanded)
     }
 
     @ViewBuilder

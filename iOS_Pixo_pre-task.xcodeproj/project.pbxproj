@@ -14,6 +14,8 @@
 		11A40D7B2C68BFC700F0F7BF /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A40D7A2C68BFC700F0F7BF /* Home.swift */; };
 		11A40D7D2C68C07A00F0F7BF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A40D7C2C68C07A00F0F7BF /* ContentView.swift */; };
 		11A40D7F2C68D57900F0F7BF /* OtherContens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A40D7E2C68D57900F0F7BF /* OtherContens.swift */; };
+		11A40D812C68D79000F0F7BF /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A40D802C68D79000F0F7BF /* SharedData.swift */; };
+		11A40D852C68DABB00F0F7BF /* CustomPagingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A40D842C68DABB00F0F7BF /* CustomPagingIndicatorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		11A40D7A2C68BFC700F0F7BF /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		11A40D7C2C68C07A00F0F7BF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		11A40D7E2C68D57900F0F7BF /* OtherContens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherContens.swift; sourceTree = "<group>"; };
+		11A40D802C68D79000F0F7BF /* SharedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedData.swift; sourceTree = "<group>"; };
+		11A40D842C68DABB00F0F7BF /* CustomPagingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPagingIndicatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,10 +61,9 @@
 		11A40D6B2C68BD1800F0F7BF /* iOS_Pixo_pre-task */ = {
 			isa = PBXGroup;
 			children = (
+				11A40D832C68D7D500F0F7BF /* Model */,
+				11A40D822C68D7D000F0F7BF /* View */,
 				11A40D6C2C68BD1800F0F7BF /* iOS_Pixo_pre_taskApp.swift */,
-				11A40D6E2C68BD1800F0F7BF /* PhotosScrollView.swift */,
-				11A40D7A2C68BFC700F0F7BF /* Home.swift */,
-				11A40D7E2C68D57900F0F7BF /* OtherContens.swift */,
 				11A40D7C2C68C07A00F0F7BF /* ContentView.swift */,
 				11A40D702C68BD1900F0F7BF /* Assets.xcassets */,
 				11A40D722C68BD1900F0F7BF /* Preview Content */,
@@ -74,6 +77,25 @@
 				11A40D732C68BD1900F0F7BF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		11A40D822C68D7D000F0F7BF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				11A40D7A2C68BFC700F0F7BF /* Home.swift */,
+				11A40D842C68DABB00F0F7BF /* CustomPagingIndicatorView.swift */,
+				11A40D6E2C68BD1800F0F7BF /* PhotosScrollView.swift */,
+				11A40D7E2C68D57900F0F7BF /* OtherContens.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		11A40D832C68D7D500F0F7BF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				11A40D802C68D79000F0F7BF /* SharedData.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,8 +168,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11A40D812C68D79000F0F7BF /* SharedData.swift in Sources */,
 				11A40D6F2C68BD1800F0F7BF /* PhotosScrollView.swift in Sources */,
 				11A40D7F2C68D57900F0F7BF /* OtherContens.swift in Sources */,
+				11A40D852C68DABB00F0F7BF /* CustomPagingIndicatorView.swift in Sources */,
 				11A40D7B2C68BFC700F0F7BF /* Home.swift in Sources */,
 				11A40D7D2C68C07A00F0F7BF /* ContentView.swift in Sources */,
 				11A40D6D2C68BD1800F0F7BF /* iOS_Pixo_pre_taskApp.swift in Sources */,
