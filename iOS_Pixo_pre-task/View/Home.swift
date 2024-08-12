@@ -37,7 +37,6 @@ struct Home: View {
                     .frame(width: 20, height: 20)
             }
             .padding(.horizontal, 20)
-
         }
         .scrollDisabled(sharedData.isExpanded)
         .environment(sharedData)

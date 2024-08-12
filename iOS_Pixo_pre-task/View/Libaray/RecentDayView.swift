@@ -1,14 +1,19 @@
 //
 //  RecentDays.swift
 //  iOS_Pixo_pre-task
-//
-//  Created by 서수영 on 8/12/24.
+//  iOS 신입 지원자 서수영
 //
 
 import SwiftUI
 
 struct RecentDayView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        CoverCarousel(data: images) { image in //content View
+                Image(image.image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .clipped()
+        }
+        .animation(.snappy(duration: 0.3, extraBounce: 0), value: true)
     }
 }
