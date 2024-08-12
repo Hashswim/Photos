@@ -19,17 +19,16 @@ struct Home: View {
                 PhotosScrollView(size: size, safeArea: safeArea)
                 
                 //하단 섹션
-                OtherContens()
+                Library()
             }
         }
         .overlay(alignment: .topLeading) {
             HStack {
                 Text("Photos")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
+                    .font(.largeTitle.bold())
                     .foregroundStyle(Color.white)
                     .padding(safeArea)
-                    .opacity(sharedData.activePage == 1 ? 1 : 0)
+                    .opacity(sharedData.activePage != 1 ? 0 : 1)
 
                 Spacer()
                 
