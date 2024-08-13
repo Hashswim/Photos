@@ -23,7 +23,22 @@ struct Home: View {
                     Library()
                 }
             }
-            
+//            .gesture(
+//                DragGesture(minimumDistance: 0, coordinateSpace: .local)
+//                    .onChanged { value in
+//                        let translation = value.translation.height
+//                        let isScrollingUp = translation > 0
+//                        let isScrollingDown = translation < 0
+//                        print(isScrollingUp)
+//                        // ... rest of your logic using translation, isScrollingUp, and isScrollingDown
+//                    }
+////                    .onEnded { value in
+////                        let translation = value.translation.height
+////                        let isScrollingUp = translation > 0
+////                        let isScrollingDown = translation < 0
+////
+////                        // ... rest of your logic for gesture end
+//                    )
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .principal) {

@@ -9,8 +9,8 @@ import SwiftUI
 struct Library: View {
     var body: some View {
         VStack(spacing: 10) {
-//            DummyView("Albums", childContentsView: MemoryView(), height: 480)
             DummyView("Recent Days" , childContentsView: RecentDayView(), height: 200)
+            DummyView("Albums", childContentsView: AlbumView(), height: 180)
             DummyView("Memories", childContentsView: MemoryView(), height: 480)
         }
     }
