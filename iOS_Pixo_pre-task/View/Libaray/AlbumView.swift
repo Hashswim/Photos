@@ -17,7 +17,7 @@ struct AlbumView: View {
                 HStack {
                     ForEach(testArr, id: \.self) { color in
                         ZStack {
-                            Color.gray
+                            Color.secondary
                             VStack {
                                 getAlbumContainer()
 
@@ -49,7 +49,9 @@ struct AlbumView: View {
             HStack(alignment: .center) {
                 VStack(alignment: .leading) {
                     Text("네이버 앨범")
+                        .font(.headline)
                     Text("5")
+                        .font(.caption)
                 }
 
                 Spacer()
@@ -57,6 +59,7 @@ struct AlbumView: View {
                 Rectangle()
                     .fill(Color.green)
                     .frame(width: geometry.size.width * 0.4)
+                    .clipShape(RoundedRectangle(cornerRadius: 4))
             }
             .padding(.horizontal)
         }

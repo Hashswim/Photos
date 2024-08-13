@@ -1,8 +1,3 @@
-//
-//  Home.swift
-//  iOS_Pixo_pre-task
-//  iOS 신입 지원자 서수영
-//
 
 import SwiftUI
 

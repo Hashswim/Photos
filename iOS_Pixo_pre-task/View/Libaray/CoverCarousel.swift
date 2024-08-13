@@ -52,7 +52,7 @@ struct CoverCarousel<Content: View, Data: RandomAccessCollection>: View where Da
                 .opacity(1 - opacityValue)
                 .overlay {
                     if opacityValue < 0.2 {
-                        Text("22년 10월 5일")
+                        Text((item as! ImageModel).date.toString)
                             .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/.bold())
                             .frame(alignment: .bottom)
                             .foregroundStyle(Color.white)

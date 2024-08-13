@@ -23,6 +23,8 @@
 		11A40D852C68DABB00F0F7BF /* CustomPagingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A40D842C68DABB00F0F7BF /* CustomPagingIndicatorView.swift */; };
 		11E1CA012C6AAB8D000108EC /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E1CA002C6AAB8D000108EC /* AlbumView.swift */; };
 		11E1CA032C6AB9B0000108EC /* ImageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E1CA022C6AB9B0000108EC /* ImageCardView.swift */; };
+		11E1CA072C6B466B000108EC /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E1CA062C6B466B000108EC /* Date+.swift */; };
+		11E1CA092C6B4811000108EC /* PhotoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E1CA082C6B4811000108EC /* PhotoData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,8 @@
 		11A40D842C68DABB00F0F7BF /* CustomPagingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPagingIndicatorView.swift; sourceTree = "<group>"; };
 		11E1CA002C6AAB8D000108EC /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
 		11E1CA022C6AB9B0000108EC /* ImageCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCardView.swift; sourceTree = "<group>"; };
+		11E1CA062C6B466B000108EC /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		11E1CA082C6B4811000108EC /* PhotoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,7 @@
 		1129FAB92C69FE15008B324C /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				11E1CA062C6B466B000108EC /* Date+.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -131,6 +136,7 @@
 			children = (
 				11A40D802C68D79000F0F7BF /* SharedData.swift */,
 				1129FAC52C6A4A8F008B324C /* ImageModel.swift */,
+				11E1CA082C6B4811000108EC /* PhotoData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -214,10 +220,12 @@
 				11A40D7F2C68D57900F0F7BF /* Library.swift in Sources */,
 				11E1CA012C6AAB8D000108EC /* AlbumView.swift in Sources */,
 				1129FAC22C6A4295008B324C /* RecentDayView.swift in Sources */,
+				11E1CA072C6B466B000108EC /* Date+.swift in Sources */,
 				1129FAC62C6A4A8F008B324C /* ImageModel.swift in Sources */,
 				11A40D852C68DABB00F0F7BF /* CustomPagingIndicatorView.swift in Sources */,
 				11A40D7B2C68BFC700F0F7BF /* Home.swift in Sources */,
 				11A40D7D2C68C07A00F0F7BF /* ContentView.swift in Sources */,
+				11E1CA092C6B4811000108EC /* PhotoData.swift in Sources */,
 				11A40D6D2C68BD1800F0F7BF /* iOS_Pixo_pre_taskApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

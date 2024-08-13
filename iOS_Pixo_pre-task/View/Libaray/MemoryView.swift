@@ -16,7 +16,9 @@ struct MemoryView: View {
             let itemWidth: CGFloat = geometry.size.width * 0.8
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: geometry.size.width * 0.05) {
-                    ForEach(images, id: \.id) { image in
+                    ForEach(PhotoData.shared.photos.filter {
+                        $0.memoryText != ""
+                    }, id: \.id) { image in
                         NavigationLink(
                             destination: ImageCardView(imageModel: image)
                         ) {
