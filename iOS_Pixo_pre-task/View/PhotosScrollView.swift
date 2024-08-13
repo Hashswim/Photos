@@ -14,7 +14,7 @@ struct PhotosScrollView: View {
 
     var body: some View {
         let screenHeight = size.height + safeArea.top + safeArea.bottom
-        let minimisedHeight = screenHeight * 0.4
+        let minimisedHeight = screenHeight * 0.6
 
         ScrollView(.horizontal) {
             LazyHStack(alignment: .bottom, spacing: 0) {

@@ -16,7 +16,11 @@ struct CoverCarousel<Content: View, Data: RandomAccessCollection>: View where Da
             ScrollView(.horizontal) {
                 HStack(spacing: 10) {
                     ForEach(data) { item in
-                        ItemView(item)
+                        NavigationLink(
+                            destination: ImageCardView(imageModel: item as! ImageModel)
+                        ) {
+                            ItemView(item)
+                        }
                     }
                 }
                 .scrollTargetLayout()

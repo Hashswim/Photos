@@ -23,12 +23,13 @@ struct Home: View {
                     Library()
                 }
             }
+            
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    HStack {
+                    HStack() {
                         Text("Photos")
-                            .font(.largeTitle.bold())
+                            .font(.title.bold())
                             .foregroundStyle(Color.white)
                             .padding(safeArea)
                             .opacity(sharedData.activePage != 1 ? 0 : 1)
@@ -39,6 +40,7 @@ struct Home: View {
                             .fill(.black)
                             .frame(width: 20, height: 20)
                     }
+                    .frame(height: 24)
                 }
             }
             .toolbarBackground(.hidden, for: .navigationBar)
