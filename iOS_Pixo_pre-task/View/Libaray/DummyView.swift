@@ -33,7 +33,7 @@ struct DummyView<ChildContentsView: View>: View {
                         .foregroundStyle(.gray)
                 }
             }
-//            .safeAreaPadding(.horizontal, 15)
+            .safeAreaPadding(.horizontal, 15)
 
             childContentsView
                 .frame(height: height)

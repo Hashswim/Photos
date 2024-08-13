@@ -21,6 +21,8 @@
 		11A40D7F2C68D57900F0F7BF /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A40D7E2C68D57900F0F7BF /* Library.swift */; };
 		11A40D812C68D79000F0F7BF /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A40D802C68D79000F0F7BF /* SharedData.swift */; };
 		11A40D852C68DABB00F0F7BF /* CustomPagingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A40D842C68DABB00F0F7BF /* CustomPagingIndicatorView.swift */; };
+		11E1CA012C6AAB8D000108EC /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E1CA002C6AAB8D000108EC /* AlbumView.swift */; };
+		11E1CA032C6AB9B0000108EC /* ImageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E1CA022C6AB9B0000108EC /* ImageCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,8 @@
 		11A40D7E2C68D57900F0F7BF /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 		11A40D802C68D79000F0F7BF /* SharedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedData.swift; sourceTree = "<group>"; };
 		11A40D842C68DABB00F0F7BF /* CustomPagingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPagingIndicatorView.swift; sourceTree = "<group>"; };
+		11E1CA002C6AAB8D000108EC /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
+		11E1CA022C6AB9B0000108EC /* ImageCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +70,9 @@
 				1129FABD2C6A1FD9008B324C /* DummyView.swift */,
 				1129FAC12C6A4295008B324C /* RecentDayView.swift */,
 				1129FAC32C6A4972008B324C /* CoverCarousel.swift */,
+				11E1CA002C6AAB8D000108EC /* AlbumView.swift */,
 				1129FABF2C6A1FFE008B324C /* MemoryView.swift */,
+				11E1CA022C6AB9B0000108EC /* ImageCardView.swift */,
 			);
 			path = Libaray;
 			sourceTree = "<group>";
@@ -199,12 +205,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11E1CA032C6AB9B0000108EC /* ImageCardView.swift in Sources */,
 				1129FAC42C6A4972008B324C /* CoverCarousel.swift in Sources */,
 				1129FAC02C6A1FFE008B324C /* MemoryView.swift in Sources */,
 				11A40D812C68D79000F0F7BF /* SharedData.swift in Sources */,
 				1129FABE2C6A1FD9008B324C /* DummyView.swift in Sources */,
 				11A40D6F2C68BD1800F0F7BF /* PhotosScrollView.swift in Sources */,
 				11A40D7F2C68D57900F0F7BF /* Library.swift in Sources */,
+				11E1CA012C6AAB8D000108EC /* AlbumView.swift in Sources */,
 				1129FAC22C6A4295008B324C /* RecentDayView.swift in Sources */,
 				1129FAC62C6A4A8F008B324C /* ImageModel.swift in Sources */,
 				11A40D852C68DABB00F0F7BF /* CustomPagingIndicatorView.swift in Sources */,
