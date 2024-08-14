@@ -7,7 +7,6 @@
 
 import Foundation
 
-@Observable
 final class PhotoData {
     static let shared = PhotoData()
 
@@ -22,6 +21,4 @@ final class PhotoData {
         photos[24].memoryText = "물고기와 함께"
         photos[44].memoryText = "인천 강아지 카페"
     }
-
-
 }

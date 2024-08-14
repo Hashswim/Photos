@@ -25,6 +25,7 @@
 		11E1CA032C6AB9B0000108EC /* ImageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E1CA022C6AB9B0000108EC /* ImageCardView.swift */; };
 		11E1CA072C6B466B000108EC /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E1CA062C6B466B000108EC /* Date+.swift */; };
 		11E1CA092C6B4811000108EC /* PhotoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E1CA082C6B4811000108EC /* PhotoData.swift */; };
+		11E1CA0C2C6CD0D4000108EC /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E1CA0B2C6CD0D4000108EC /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		11E1CA022C6AB9B0000108EC /* ImageCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCardView.swift; sourceTree = "<group>"; };
 		11E1CA062C6B466B000108EC /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		11E1CA082C6B4811000108EC /* PhotoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoData.swift; sourceTree = "<group>"; };
+		11E1CA0B2C6CD0D4000108EC /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				1129FAB92C69FE15008B324C /* Service */,
 				11A40D832C68D7D500F0F7BF /* Model */,
 				11A40D822C68D7D000F0F7BF /* View */,
+				11E1CA0A2C6CD0B7000108EC /* ViewModel */,
 				11A40D6C2C68BD1800F0F7BF /* iOS_Pixo_pre_taskApp.swift */,
 				11A40D7C2C68C07A00F0F7BF /* ContentView.swift */,
 				11A40D702C68BD1900F0F7BF /* Assets.xcassets */,
@@ -139,6 +142,14 @@
 				11E1CA082C6B4811000108EC /* PhotoData.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		11E1CA0A2C6CD0B7000108EC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				11E1CA0B2C6CD0D4000108EC /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,6 +222,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11E1CA0C2C6CD0D4000108EC /* HomeViewModel.swift in Sources */,
 				11E1CA032C6AB9B0000108EC /* ImageCardView.swift in Sources */,
 				1129FAC42C6A4972008B324C /* CoverCarousel.swift in Sources */,
 				1129FAC02C6A1FFE008B324C /* MemoryView.swift in Sources */,

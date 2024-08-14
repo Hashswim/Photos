@@ -7,54 +7,69 @@ struct Home: View {
     var safeArea: EdgeInsets
     var sharedData = SharedData()
 
+    @Namespace var bottomID
+
+    @State private var viewModel: HomeViewModel = HomeViewModel()
+
+    private var scrollObservableView: some View {
+        GeometryReader { proxy in
+            let offsetY = proxy.frame(in: .global).origin.y
+            Color.clear
+                .preference(
+                    key: ScrollOffsetKey.self,
+                    value: offsetY
+                )
+                .onAppear {
+                    viewModel.setOriginOffset(offsetY)
+                }
+        }
+        .frame(height: 0)
+    }
+
     var body: some View {
         NavigationStack {
             ScrollView(.vertical) {
+                scrollObservableView
                 VStack(spacing: 10) {
                     //상단 캐러셀
                     PhotosScrollView(size: size, safeArea: safeArea)
 
+                    Text("\(sharedData.mainOffset)")
+
                     //하단 섹션
                     Library()
+                    Spacer()
                 }
+                .offset(y: !sharedData.isExpanded ? 0 : -sharedData.mainOffset)
             }
-//            .gesture(
-//                DragGesture(minimumDistance: 0, coordinateSpace: .local)
-//                    .onChanged { value in
-//                        let translation = value.translation.height
-//                        let isScrollingUp = translation > 0
-//                        let isScrollingDown = translation < 0
-//                        print(isScrollingUp)
-//                        // ... rest of your logic using translation, isScrollingUp, and isScrollingDown
-//                    }
-////                    .onEnded { value in
-////                        let translation = value.translation.height
-////                        let isScrollingUp = translation > 0
-////                        let isScrollingDown = translation < 0
-////
-////                        // ... rest of your logic for gesture end
-//                    )
-            .navigationBarTitleDisplayMode(.large)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    HStack() {
-                        Text("Photos")
-                            .font(.title.bold())
-                            .foregroundStyle(Color.white)
-                            .padding(safeArea)
-                            .opacity(sharedData.activePage != 1 ? 0 : 1)
+            .onPreferenceChange(ScrollOffsetKey.self) {
+                sharedData.mainOffset = $0
 
-                        Spacer()
+                if sharedData.mainOffset > (size.height / 5) && !sharedData.isExpanded {
+                    withAnimation(.smooth(duration: 0.5, extraBounce: 0)) {
+                        sharedData.isExpanded = true
 
-                        Circle()
-                            .fill(.black)
-                            .frame(width: 20, height: 20)
+                        sharedData.progress = 1
                     }
-                    .frame(height: 24)
                 }
             }
-            .toolbarBackground(.hidden, for: .navigationBar)
-            .frame(width: size.width)
+            .overlay(alignment: .top) {
+                HStack {
+                    Text("Photos")
+                        .font(.largeTitle.bold())
+                        .foregroundStyle(Color.white)
+                        .padding(safeArea)
+                        .opacity(sharedData.activePage != 1 ? 0 : 1)
+
+                    Spacer()
+
+                    Circle()
+                        .fill(.black)
+                        .frame(width: 20, height: 20)
+                }
+                .padding()
+            }
+            .ignoresSafeArea()
             .scrollDisabled(sharedData.isExpanded)
             .environment(sharedData)
         }

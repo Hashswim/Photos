@@ -34,6 +34,15 @@ struct PhotosScrollView: View {
             }
             .scrollTargetLayout()
         }
+//        .onPreferenceChange(ScrollOffsetKey.self) {
+//            sharedData.scrollOffset = $0
+//            if sharedData.scrollOffset < 100 && sharedData.isExpanded {
+//                withAnimation(.smooth(duration: 3.35, extraBounce: 0)) {
+//                    sharedData.isExpanded = false
+//                    sharedData.progress = 1
+//                }
+//            }
+//        }
         .scrollIndicators(.hidden)
         .scrollTargetBehavior(.paging)
         .safeAreaPadding(.bottom, 15)
@@ -44,7 +53,7 @@ struct PhotosScrollView: View {
         }))
         .scrollDisabled(sharedData.isExpanded)
         .frame(height: screenHeight)
-        .frame(height: screenHeight - minimisedHeight, alignment: .bottom)
+        .frame(height: screenHeight - (minimisedHeight - (minimisedHeight * sharedData.progress)), alignment: .bottom)
         .overlay(alignment: .bottom) {
             CustomPagingIndicatorView()
         }
