@@ -1,8 +1,7 @@
 //
 //  CustomGesture.swift
 //  iOS_Pixo_pre-task
-//
-//  Created by 서수영 on 8/15/24.
+//  iOS 신입 지원자 서수영
 //
 
 import SwiftUI

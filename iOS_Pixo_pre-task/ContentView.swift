@@ -12,7 +12,7 @@ struct ContentView: View {
             let size = $0.size
             let safeArea = $0.safeAreaInsets
 
-            Home(size: size, safeArea: safeArea)
+            HomeView(size: size, safeArea: safeArea)
                 .ignoresSafeArea(.all, edges: .top)
         }
     }

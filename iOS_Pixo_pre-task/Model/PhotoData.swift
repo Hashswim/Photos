@@ -1,10 +1,8 @@
 //
 //  PhotoData.swift
 //  iOS_Pixo_pre-task
+//  iOS 신입 지원자 서수영
 //
-//  Created by 서수영 on 8/13/24.
-//
-
 import Foundation
 
 final class PhotoData {

@@ -10,7 +10,7 @@ struct MemoryView: View {
 
     @State private var scale: CGFloat = 1.0
     @State private var isFavorite: Bool = false
-    @State private var isShowingCardView = false
+    @State private var selectedItem: ImageModel? = nil
 
     var body: some View {
         GeometryReader { geometry in
@@ -31,9 +31,6 @@ struct MemoryView: View {
                             }
                             .frame(width: itemWidth, height: 480)
                             .clipShape(RoundedRectangle(cornerRadius: 15))
-                            .fullScreenCover(isPresented: $isShowingCardView){
-                                ImageCardView(imageModel: image)
-                            }
                             .overlay(alignment: .bottom) {
                                 Text("\(image.memoryText)")
                                     .font(.largeTitle.bold())
@@ -42,11 +39,14 @@ struct MemoryView: View {
                                     .padding(.bottom)
                             }
                             .onTapGesture {
-                                isShowingCardView.toggle()
+                                selectedItem = image
                             }
                     }
                 }
                 .scrollTargetLayout()
+            }
+            .fullScreenCover(item: $selectedItem){ item in
+                ImageCardView(imageModel: item)
             }
             .contentMargins(.horizontal, geometry.size.width * 0.05)
             .scrollTargetBehavior(.viewAligned)
