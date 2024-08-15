@@ -20,12 +20,12 @@ struct AlbumView: View {
                         ZStack {
                             Color.secondary
                             VStack {
-                                getAlbumContainer(albumTypes[i*2])
+                                GetAlbumContainer(type: albumTypes[i*2])
 
                                 Divider()
 
                                 if albumcount >= (i*2 + 1) {
-                                    getAlbumContainer(albumTypes[i*2 + 1])
+                                    GetAlbumContainer(type: albumTypes[i*2 + 1])
                                 }
                             }
                             .padding(.vertical)
@@ -45,28 +45,80 @@ struct AlbumView: View {
             .scrollTargetBehavior(.viewAligned)
         }
     }
+}
 
-    @ViewBuilder
-    func getAlbumContainer(_ type: AlbumType) -> some View {
-        let photoList = PhotoData.shared.photos.filter { $0.album == type }
+struct GetAlbumContainer: View {
+    var type: AlbumType
+    var photoList: [ImageModel] {
+        PhotoData.shared.photos.filter { $0.album == type }
+    }
 
+    @State var isShowingAlbum: Bool = false
+
+    var body: some View {
         GeometryReader { geometry in
             HStack(alignment: .center) {
                 VStack(alignment: .leading) {
                     Text(type.name)
                         .font(.headline)
-                    Text("\(photoList.count)")
+                    Text("\(photoList.count) Photos")
                         .font(.caption)
                 }
 
                 Spacer()
 
-                Image(photoList.first!.image)
-                    .frame(width: geometry.size.width * 0.4, height: geometry.size.height)
-                    .clipShape(RoundedRectangle(cornerRadius: 4))
+                if let img = photoList.first?.image {
+                    Image(img)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: geometry.size.width * 0.4, height: geometry.size.height)
+                        .clipShape(RoundedRectangle(cornerRadius: 4))
+                        .clipped()
+                } else {
+                    Color.gray
+                        .frame(width: geometry.size.width * 0.4, height: geometry.size.height)
+                        .clipShape(RoundedRectangle(cornerRadius: 4))
+                }
+            }
+            .onTapGesture {
+                isShowingAlbum.toggle()
             }
             .padding(.horizontal)
         }
+        .sheet(isPresented: $isShowingAlbum) {
+            AlbumGridView(album: type)
+        }
+    }
+}
+
+struct AlbumGridView: View {
+    var album: AlbumType
+
+    private let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+
+    var body: some View {
+        let photoList = PhotoData.shared.photos.filter { $0.album == album }
+
+        ScrollView {
+            LazyVGrid(columns: columns, spacing: 10) {
+                Text(album.name)
+                    .font(.headline.bold())
+
+                ForEach(photoList, id: \.self) { photo in
+                    Image(photo.image)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 150, height: 150)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .clipped()
+                }
+            }
+            .padding()
+        }
+        .navigationTitle(album.name)
     }
 }
 

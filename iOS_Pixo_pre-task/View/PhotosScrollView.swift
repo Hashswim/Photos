@@ -18,6 +18,7 @@ struct PhotosScrollView: View {
     @Environment(SharedData.self) private var sharedData
 
     @State private var scrollPosition: ScrollPosition = .init()
+    @State private var selectedItem: ImageModel? = nil
 
     var body: some View {
         let screenHeight = size.height + safeArea.top + safeArea.bottom
@@ -78,10 +79,15 @@ struct PhotosScrollView: View {
     func GridPhotosScrollView() -> some View {
         ScrollView(.vertical) {
             LazyVGrid(columns: Array(repeating: GridItem(spacing: 2), count: 3), spacing: 2) {
-                ForEach(0...300, id: \.self) { _ in
-                    Rectangle()
-                        .fill(.red)
-                        .frame(height: 120)
+                ForEach(PhotoData.shared.photos, id: \.self) { photo in
+                    Image(photo.image)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(height: 90)
+                        .clipped()
+                        .onTapGesture {
+                            selectedItem = photo
+                        }
                 }
             }
             .scrollTargetLayout()
@@ -100,6 +106,9 @@ struct PhotosScrollView: View {
         }, action: { oldValue, newValue in
             sharedData.photosScrollOffset = newValue
         })
+        .fullScreenCover(item: $selectedItem){ item in
+            ImageCardView(imageModel: item as! ImageModel)
+        }
     }
 
     @ViewBuilder

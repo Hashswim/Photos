@@ -5,7 +5,7 @@ struct Home: View {
 
     var size: CGSize
     var safeArea: EdgeInsets
-    var sharedData = SharedData()
+    @State var sharedData = SharedData()
 
     @State private var isMovingDown: Bool = false
     @State private var translationValue: CGFloat = 0

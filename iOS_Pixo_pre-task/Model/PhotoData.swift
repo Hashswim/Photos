@@ -40,8 +40,12 @@ final class PhotoData {
     }
 }
 
-enum AlbumType: CaseIterable {
+enum AlbumType: CaseIterable, Identifiable {
     case summer, winter, travel, mySpecial
+
+    var id: Self {
+        return self
+    }
 
     var name: String {
         switch self {

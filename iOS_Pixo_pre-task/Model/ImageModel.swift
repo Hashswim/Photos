@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ImageModel: Identifiable {
+struct ImageModel: Identifiable, Hashable {
     var id: UUID = .init()
     var image: String
     var date: Date
