@@ -20,5 +20,39 @@ final class PhotoData {
         photos[16].memoryText = "계곡에서"
         photos[24].memoryText = "물고기와 함께"
         photos[44].memoryText = "인천 강아지 카페"
+
+        photos[7].album = .summer
+        photos[9].album = .summer
+        photos[15].album = .summer
+        photos[16].album = .summer
+
+        photos[4].album = .winter
+        photos[5].album = .winter
+        photos[29].album = .winter
+        photos[44].album = .winter
+
+        photos[8].album = .travel
+        photos[19].album = .travel
+
+        photos[30].album = .mySpecial
+        photos[31].album = .mySpecial
+        photos[35].album = .mySpecial
+    }
+}
+
+enum AlbumType: CaseIterable {
+    case summer, winter, travel, mySpecial
+
+    var name: String {
+        switch self {
+        case .summer:
+            "여름"
+        case .winter:
+            "겨울"
+        case .travel:
+            "여행"
+        case .mySpecial:
+            "나만의 앨범"
+        }
     }
 }

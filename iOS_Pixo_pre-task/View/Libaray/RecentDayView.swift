@@ -10,7 +10,7 @@ struct RecentDayView: View {
     var body: some View {
         CoverCarousel(data: PhotoData.shared.photos.sorted(by: {
             $0.date > $1.date
-        })) { image in //content View
+        })) { image in
                 Image(image.image)
                     .resizable()
                     .aspectRatio(contentMode: .fill)

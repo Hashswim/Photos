@@ -10,17 +10,18 @@ import SwiftUI
 struct CoverCarousel<Content: View, Data: RandomAccessCollection>: View where Data.Element: Identifiable {
     var data: Data
     @ViewBuilder var content: (Data.Element) -> Content
-    
+
+    @State private var selectedItem: Data.Element? = nil
+
     var body: some View {
         GeometryReader { geometry in
             ScrollView(.horizontal) {
                 HStack(spacing: 10) {
                     ForEach(data) { item in
-                        NavigationLink(
-                            destination: ImageCardView(imageModel: item as! ImageModel)
-                        ) {
-                            ItemView(item)
-                        }
+                        ItemView(item)
+                            .onTapGesture {
+                                selectedItem = item
+                            }
                     }
                 }
                 .scrollTargetLayout()
@@ -28,6 +29,9 @@ struct CoverCarousel<Content: View, Data: RandomAccessCollection>: View where Da
             .safeAreaPadding(.horizontal, (geometry.size.width - 300) / 2)
             .scrollTargetBehavior(.viewAligned(limitBehavior: .always))
             .scrollIndicators(.hidden)
+            .fullScreenCover(item: $selectedItem){ item in
+                ImageCardView(imageModel: item as! ImageModel)
+            }
         }
     }
 

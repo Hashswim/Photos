@@ -9,25 +9,28 @@ import SwiftUI
 
 struct AlbumView: View {
 
-    private var testArr: [Color] = [.red,.orange, .yellow, .green, .blue, .purple, .pink]
+    private let albumTypes = AlbumType.allCases
+    private let albumcount = AlbumType.allCases.count
 
     var body: some View {
         GeometryReader { geometry in
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
-                    ForEach(testArr, id: \.self) { color in
+                HStack() {
+                    ForEach(0..<albumcount/2, id: \.self) { i in
                         ZStack {
                             Color.secondary
                             VStack {
-                                getAlbumContainer()
+                                getAlbumContainer(albumTypes[i*2])
 
                                 Divider()
 
-                                getAlbumContainer()
+                                if albumcount >= (i*2 + 1) {
+                                    getAlbumContainer(albumTypes[i*2 + 1])
+                                }
                             }
                             .padding(.vertical)
                         }
-                        .frame(width: geometry.size.width * 0.9, height: geometry.size.height)
+                        .frame(width: geometry.size.width * 0.85, height: geometry.size.height)
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                         .scrollTransition { content, phase in
                             content
@@ -36,29 +39,30 @@ struct AlbumView: View {
                         }
                     }
                 }
-                .padding(.horizontal, geometry.size.width * 0.05)
                 .scrollTargetLayout()
             }
+            .contentMargins(.horizontal, geometry.size.width * 0.075)
             .scrollTargetBehavior(.viewAligned)
         }
     }
 
     @ViewBuilder
-    func getAlbumContainer() -> some View {
+    func getAlbumContainer(_ type: AlbumType) -> some View {
+        let photoList = PhotoData.shared.photos.filter { $0.album == type }
+
         GeometryReader { geometry in
             HStack(alignment: .center) {
                 VStack(alignment: .leading) {
-                    Text("네이버 앨범")
+                    Text(type.name)
                         .font(.headline)
-                    Text("5")
+                    Text("\(photoList.count)")
                         .font(.caption)
                 }
 
                 Spacer()
 
-                Rectangle()
-                    .fill(Color.green)
-                    .frame(width: geometry.size.width * 0.4)
+                Image(photoList.first!.image)
+                    .frame(width: geometry.size.width * 0.4, height: geometry.size.height)
                     .clipShape(RoundedRectangle(cornerRadius: 4))
             }
             .padding(.horizontal)

@@ -10,7 +10,14 @@ struct PhotosScrollView: View {
 
     var size: CGSize
     var safeArea: EdgeInsets
+
+    var safeAreaBottom: CGFloat {
+        (safeArea.bottom == 0 ? 30 : safeArea.bottom)
+    }
+
     @Environment(SharedData.self) private var sharedData
+
+    @State private var scrollPosition: ScrollPosition = .init()
 
     var body: some View {
         let screenHeight = size.height + safeArea.top + safeArea.bottom
@@ -23,29 +30,22 @@ struct PhotosScrollView: View {
                     .id(1)
 
                 Group {
-                    StretchableView(.blue)
+                    StrechableView(.blue)
                         .id(2)
-                    StretchableView(.yellow)
+                    StrechableView(.yellow)
                         .id(3)
-                    StretchableView(.purple)
+                    StrechableView(.purple)
                         .id(4)
                 }
                 .frame(height: screenHeight - minimisedHeight)
             }
             .scrollTargetLayout()
+            .safeAreaPadding(.bottom, safeAreaBottom + 20)
         }
-//        .onPreferenceChange(ScrollOffsetKey.self) {
-//            sharedData.scrollOffset = $0
-//            if sharedData.scrollOffset < 100 && sharedData.isExpanded {
-//                withAnimation(.smooth(duration: 3.35, extraBounce: 0)) {
-//                    sharedData.isExpanded = false
-//                    sharedData.progress = 1
-//                }
-//            }
-//        }
+        .offset(y: sharedData.canPullUp ? sharedData.photosScrollOffset : 0)
+        .scrollClipDisabled()
         .scrollIndicators(.hidden)
         .scrollTargetBehavior(.paging)
-        .safeAreaPadding(.bottom, 15)
         .scrollPosition(id: .init(get: {
             return sharedData.activePage
         }, set: {
@@ -55,35 +55,63 @@ struct PhotosScrollView: View {
         .frame(height: screenHeight)
         .frame(height: screenHeight - (minimisedHeight - (minimisedHeight * sharedData.progress)), alignment: .bottom)
         .overlay(alignment: .bottom) {
-            CustomPagingIndicatorView()
+            CustomPagingIndicatorView {
+                Task {
+                    if sharedData.photosScrollOffset != 0 {
+                        withAnimation(.easeInOut(duration: 0.15)) {
+                            scrollPosition.scrollTo(edge: .bottom)
+                        }
+
+                        try? await Task.sleep(for: .seconds(0.13))
+                    }
+
+                    withAnimation(.easeInOut(duration: 0.25)) {
+                        sharedData.progress = 0
+                        sharedData.isExpanded = false
+                    }
+                }
+            }
         }
     }
 
     @ViewBuilder
     func GridPhotosScrollView() -> some View {
         ScrollView(.vertical) {
-            LazyVGrid(columns: Array(repeating: GridItem(spacing: 4), count: 3), spacing: 4) {
+            LazyVGrid(columns: Array(repeating: GridItem(spacing: 2), count: 3), spacing: 2) {
                 ForEach(0...300, id: \.self) { _ in
                     Rectangle()
                         .fill(.red)
                         .frame(height: 120)
                 }
             }
+            .scrollTargetLayout()
+            .padding(.top, safeArea.top + safeArea.bottom + 40)
+            .visualEffect { content, proxy in
+                content
+                    .offset(y: sharedData.progress * -(safeAreaBottom + 20))
+            }
         }
         .defaultScrollAnchor(.bottom)
         .scrollDisabled(!sharedData.isExpanded)
+        .scrollPosition($scrollPosition)
+        .scrollClipDisabled()
+        .onScrollGeometryChange(for: CGFloat.self, of: {
+            $0.contentOffset.y - $0.contentSize.height + $0.containerSize.height
+        }, action: { oldValue, newValue in
+            sharedData.photosScrollOffset = newValue
+        })
     }
 
     @ViewBuilder
-    func StretchableView(_ color: Color) -> some View {
+    func StrechableView(_ color: Color) -> some View {
         GeometryReader {
-            let minY = $0.frame(in: .scrollView(axis: .vertical)).minY
+            let minY = -sharedData.mainOffset
             let size = $0.size
 
             Rectangle()
                 .fill(color)
                 .frame(width: size.width, height: size.height + (minY > 0 ? minY : 0))
-                .offset(y: (minY > 0 ? -minY : 0 ))
+                .offset(y: (minY > 0 ? -minY : 0))
         }
         .frame(width: size.width)
     }
