@@ -1,14 +1,15 @@
 //
 //  PhotoScrollViewModel.swift
 //  iOS_Pixo_pre-task
-//
-//  Created by 서수영 on 8/16/24.
+//  iOS 신입 지원자 서수영
 //
 
 import SwiftUI
 
 @Observable
 class PhotosScrollViewModel {
+    var photos: [ImageModel]
+
     var scrollPosition: ScrollPosition = .init()
     var selectedItem: ImageModel? = nil
 
@@ -18,6 +19,8 @@ class PhotosScrollViewModel {
     init(size: CGSize, safeArea: EdgeInsets) {
         self.size = size
         self.safeArea = safeArea
+
+        self.photos = PhotoData.shared.photos
     }
 
     var screenHeight: CGFloat {
@@ -25,7 +28,7 @@ class PhotosScrollViewModel {
     }
 
     var minimisedHeight: CGFloat {
-        screenHeight * 0.6
+        screenHeight * 0.4
     }
 
     var safeAreaBottom: CGFloat {

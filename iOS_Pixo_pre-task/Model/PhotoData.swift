@@ -3,6 +3,7 @@
 //  iOS_Pixo_pre-task
 //  iOS 신입 지원자 서수영
 //
+
 import Foundation
 
 final class PhotoData {
@@ -11,13 +12,12 @@ final class PhotoData {
     var photos: [ImageModel]
 
     private init() {
-        photos = (1...46).compactMap { ImageModel(image: String(format: "IMG_%04d", $0), date: Date().random, memoryText: "") }
+        photos = (1...30).compactMap { ImageModel(image: String(format: "IMG_%04d", $0), date: Date().random, memoryText: "") }
         photos[4].memoryText = "스키장에서"
         photos[7].memoryText = "첫 낚시"
         photos[10].memoryText = "밤에 타는 보드"
         photos[16].memoryText = "계곡에서"
         photos[24].memoryText = "물고기와 함께"
-        photos[44].memoryText = "인천 강아지 카페"
 
         photos[7].album = .summer
         photos[9].album = .summer
@@ -27,14 +27,11 @@ final class PhotoData {
         photos[4].album = .winter
         photos[5].album = .winter
         photos[29].album = .winter
-        photos[44].album = .winter
 
         photos[8].album = .travel
         photos[19].album = .travel
 
-        photos[30].album = .mySpecial
-        photos[31].album = .mySpecial
-        photos[35].album = .mySpecial
+        photos[29].album = .mySpecial
     }
 }
 

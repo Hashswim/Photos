@@ -7,7 +7,6 @@
 import SwiftUI
 
 struct MemoryView: View {
-
     @State private var scale: CGFloat = 1.0
     @State private var isFavorite: Bool = false
     @State private var selectedItem: ImageModel? = nil

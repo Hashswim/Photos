@@ -10,11 +10,16 @@ struct PhotosScrollView: View {
     @State private var viewModel: PhotosScrollViewModel
     @Environment(SharedData.self) private var sharedData
 
+    @State private var selectedItem: ImageModel? = nil
+
     init(size: CGSize, safeArea: EdgeInsets) {
         _viewModel = State(initialValue: PhotosScrollViewModel(size: size, safeArea: safeArea))
     }
 
     var body: some View {
+        let screenHeight = viewModel.size.height + viewModel.safeArea.top + viewModel.safeAreaBottom
+        let minimisedHeight = screenHeight * 0.4
+
         ScrollView(.horizontal) {
             LazyHStack(alignment: .bottom, spacing: 0) {
                 GridPhotosScrollView()
@@ -29,7 +34,7 @@ struct PhotosScrollView: View {
                     StrechableView(.purple)
                         .id(4)
                 }
-                .frame(height: viewModel.screenHeight - viewModel.minimisedHeight)
+                .frame(height: screenHeight - minimisedHeight)
             }
             .scrollTargetLayout()
             .safeAreaPadding(.bottom, viewModel.safeAreaBottom + 20)
@@ -44,8 +49,8 @@ struct PhotosScrollView: View {
             if let newValue = $0 { sharedData.activePage = newValue }
         }))
         .scrollDisabled(sharedData.isExpanded)
-        .frame(height: viewModel.screenHeight)
-        .frame(height: viewModel.screenHeight - (viewModel.minimisedHeight - (viewModel.minimisedHeight * sharedData.progress)), alignment: .bottom)
+        .frame(height: screenHeight)
+        .frame(height: screenHeight - (minimisedHeight - (minimisedHeight * sharedData.progress)), alignment: .bottom)
         .overlay(alignment: .bottom) {
             CustomPagingIndicatorView {
                 Task {
@@ -65,17 +70,18 @@ struct PhotosScrollView: View {
     }
 
     @ViewBuilder
-    private func GridPhotosScrollView() -> some View {
+    func GridPhotosScrollView() -> some View {
         ScrollView(.vertical) {
             LazyVGrid(columns: Array(repeating: GridItem(spacing: 2), count: 3), spacing: 2) {
-                ForEach(PhotoData.shared.photos, id: \.self) { photo in
-                    Image(photo.image)
+                ForEach(0...29, id: \.self) { i in
+                    Image(PhotoData.shared.photos[i].image)
                         .resizable()
-                        .scaledToFill()
-                        .frame(height: 90)
+                        .aspectRatio(contentMode: .fill)
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                         .clipped()
+                        .aspectRatio(1, contentMode: .fit)
                         .onTapGesture {
-                            viewModel.handlePhotoTap(photo: photo)
+                            selectedItem = PhotoData.shared.photos[i]
                         }
                 }
             }
@@ -95,7 +101,7 @@ struct PhotosScrollView: View {
         }, action: { oldValue, newValue in
             sharedData.photosScrollOffset = newValue
         })
-        .fullScreenCover(item: $viewModel.selectedItem) { item in
+        .fullScreenCover(item: $selectedItem){ item in
             ImageCardView(imageModel: item)
         }
     }

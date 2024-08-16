@@ -7,7 +7,6 @@
 import SwiftUI
 
 struct AlbumView: View {
-
     private let albumTypes = AlbumType.allCases
     private let albumcount = AlbumType.allCases.count
 
